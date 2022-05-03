@@ -1,8 +1,11 @@
 from django.shortcuts import render
 
 from django.contrib.auth.views import LoginView, LogoutView
-from .forms import LoginForm
+from .forms import LoginForm, User
 from django.views import generic
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 
@@ -27,3 +30,14 @@ class TopView(generic.TemplateView):
 
 class Logout(LogoutView):
     template_name = 'login/logout_done.html'
+
+class OnlyYouMixin(UserPassesTestMixin):
+    raise_exception = True
+
+    def test_func(self):
+        user = self.request.user
+        return user.pk == self.kwargs['pk']
+
+class MyPage(OnlyYouMixin, generic.DetailView):
+    model = User
+    template_name = 'login/my_page.html'
