@@ -5,5 +5,5 @@ app_name = 'memo'
 
 urlpatterns = [
      path('',views.index, name='index'),
-     
+     path('top/',views.top, name='top')
 ]

@@ -134,5 +134,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login:index'
-LOGIN_REDIRECT_URL = 'top'
-PUBLIC_PATHS = [ 'login/index',]
+LOGIN_REDIRECT_URL = 'login:top'
+#PUBLIC_PATHS = [ 'login:index',]
