@@ -1,0 +1,21 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+
+<form method='POST'>
+    {% csrf_token %}
+    自分のキャラクター：<input type="text" name="my_char"><br>
+    相手のキャラクター：<input type="text" name="opp_char"><br>
+    <button type="submit">キャラクターを指定</button>
+</form>
+
+<div>
+    <ul>
+        {% for memo in my_memos %}
+            <li>{{ memo.title }}</li>
+            <li>{{ memo.body }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
