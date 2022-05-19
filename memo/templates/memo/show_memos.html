@@ -9,11 +9,13 @@
     <button type="submit">キャラクターを指定</button>
 </form>
 
-<div>
+<div class="container mt-3">
     <ul>
         {% for memo in my_memos %}
-            <li>{{ memo.title }}</li>
-            <li>{{ memo.body }}</li>
+        <div class="alert alert-success" role="alert">
+            <p>タイトル：{{ memo.title }}</p>
+            <p>{{ memo.body }}</p>
+        </div>
         {% endfor %}
     </ul>
 </div>
