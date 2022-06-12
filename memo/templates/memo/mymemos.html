@@ -1,9 +1,5 @@
 {% extends 'login/base.html' %}
 
-{% block title %}
-投稿されたメモ
-{% endblock %}
-
 {% block content %}
 
 <form method='POST'>
@@ -15,9 +11,9 @@
 
 <div class="container mt-2">
     <ul>
-        {% for memo in memos %}
+        {% for memo in my_memos %}
         <div class="alert alert-success" role="alert">
-            <p>タイトル：<a href="{% url 'memo:evaluation_memo' %}?memo_id={{memo.id}}">{{ memo.title }}</a></p>
+            <p>タイトル：<a href="{% url 'memo:memo_page' %}?memo_id={{memo.id}}">{{ memo.title }}</a></p>
             <p>自分のキャラクター：{{ memo.my_char }}</p>
             <p>相手のキャラクター：{{ memo.opp_char }}</p>
             <p>本文：{{ memo.body }}</p>

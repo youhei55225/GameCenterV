@@ -18,7 +18,7 @@
   <body>
     <!-- ナビバー -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-      <a class="navbar-brand" href="{% url 'login:top' %}">テストサイト</a>
+      <a class="navbar-brand" href="{% url 'login:top' %}">ストリートファイターV対策メモ</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,10 +44,13 @@
           </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'memo:add_memo' %}">memo追加</a>
+            <a class="nav-link" href="{% url 'memo:add_memo' %}">メモ投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'memo:show_memos' %}">memo表示</a>
+            <a class="nav-link" href="{% url 'memo:mymemos' %}">投稿したメモを表示</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'memo:show_memos' %}">全てのメモを表示</a>
           </li>
         </ul>
       </div>
