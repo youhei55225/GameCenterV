@@ -1,0 +1,26 @@
+{% extends 'login/base.html' %}
+
+{% block title %}
+{{ the_memo.title }}
+{% endblock%}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="card border-dark">
+        <div class = "card-header">
+            <h5>投稿者：{{ the_memo.author }} </h5>
+                <h6>自分のキャラクター：{{ the_memo.my_char }}
+                相手のキャラクター：{{ the_memo.opp_char }}</h6>
+        </div>
+        <div class = "card-body">
+            <h5>タイトル：{{ the_memo.title }}</h5>
+            <p>本文：{{ the_memo.body }}</p>
+        </div>
+        <div class = "card-footer">
+            <p>goods：{{ the_memo.good }}</p>
+            <p>read：{{ the_memo.read }}</p>
+            <p>date time：{{ the_memo.date_time }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

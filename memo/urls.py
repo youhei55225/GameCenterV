@@ -11,5 +11,5 @@ urlpatterns = [
      path('memo_page/',views.memo_page,name='memo_page'),
      path('edit_memo/',views.edit_memo,name='edit_memo'),
      path('mymemos/',views.mymemos,name='mymemos'),
-     path('evaluation_memo/',views.evaluation_memo,name='evaluation_memo'),
+     path('memo_detail/',views.memo_detail,name='memo_detail'),
 ]

@@ -6,43 +6,40 @@
 
 {% block content %}
 <div class="container mt-2">
-    <ul>
-        <div class="alert alert-success" role="alert">
-            <p>タイトル：{{ the_memo.title }}</p>
+    <div class = "card border-primary"> 
+        <div class="card-header">
+            <p>投稿者：{{ the_memo.author }} </p>
             <p>自分のキャラクター：{{ the_memo.my_char }}</p>
             <p>相手のキャラクター：{{ the_memo.opp_char }}</p>
+        </div>
+        <div class = "card-body">
+            <p>タイトル：{{ the_memo.title }}</p>
             <p>本文：{{ the_memo.body }}</p>
-            <p>投稿者：{{ the_memo.author }} </p>
+        </div>
+        <div class = "card-footer">
             <p>goods：{{ the_memo.good }}</p>
             <p>read：{{ the_memo.read }}</p>
+            <p>date time：{{ the_memo.date_time }}</p>
             
             <!--更新-->
-            <div class = 'container'>
-                <div class ='row my-3'>
-                    <h3>編集</h3>
+            <div class='row md-5'>
+                <div class='col-2'>
+                    <a class = 'btn btn-primary' data-toggle='modal' data-target='#edit'>
+                        edit
+                    </a>
                 </div>
-                <div class='row md-5'>
-                    <div class='col-2'>
-                        <a class = 'btn btn-primary' data-toggle='modal' data-target='#edit'>
-                            edit
-                        </a>
-                    </div>
+            <!--削除-->
+                <div class='col-4'>
+                    <a class = 'btn btn-primary' data-toggle='modal' data-target='#delete'>
+                        delete
+                    </a>
                 </div>
             </div>
 
-            <!--削除-->
-            <div class = 'container'>
-                <div class ='row my-3'>
-                    <h3>削除</h3>
-                </div>
-                <div class='row md-5'>
-                    <div class='col-2'>
-                        <a class = 'btn btn-primary' data-toggle='modal' data-target='#delete'>
-                            delete
-                        </a>
-                    </div>
-                </div>
-            </div>
+        </div>
+            
+            
+            
 
             <!--更新-->
             <div class = 'modal fade' id = 'edit' tabindex = '-1' role='dialog' aria-labelledby = 'basicModal' aria-hidden = 'true'>

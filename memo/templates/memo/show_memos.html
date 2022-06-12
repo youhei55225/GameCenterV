@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
 <form method='POST'>
     {% csrf_token %}
     自分のキャラクター：<input type="text" name="my_char"><br>
@@ -13,21 +14,35 @@
     <button type="submit">キャラクターを指定</button>
 </form>
 
-<div class="container mt-2">
-    <ul>
-        {% for memo in memos %}
-        <div class="alert alert-success" role="alert">
-            <p>タイトル：<a href="{% url 'memo:evaluation_memo' %}?memo_id={{memo.id}}">{{ memo.title }}</a></p>
-            <p>自分のキャラクター：{{ memo.my_char }}</p>
-            <p>相手のキャラクター：{{ memo.opp_char }}</p>
-            <p>本文：{{ memo.body }}</p>
-            <p>投稿者：{{ memo.author }} </p>
+<div class = 'container'>
+<ul>
+    {% for memo in memos %}
+        <div class="card my-3 test-center border-dark" >
+            <div class = "card-header">
+                <h5>投稿者：{{ memo.author }} </h5>
+                <h6>自分のキャラクター：{{ memo.my_char }}
+                相手のキャラクター：{{ memo.opp_char }}</h6>
+            </div>
+        <div class="card-body">
+            <div class = "card-title">
+                <h5>
+                    タイトル：<a href="{% url 'memo:memo_detail' %}?memo_id={{memo.id}}">{{ memo.title }}</a>
+                </h5>
+            </div>
+            
+            <p>本文：{{ memo.body | truncatechars:50 }}</p>
+            
+            
+        </div>
+        <div class = 'card-footer'>
             <p>goods：{{ memo.good }}</p>
             <p>read：{{ memo.read }}</p>
-            <!--<p>id：{{memo.id}}</p>-->
+            <p>date time：{{ memo.date_time }}</p>
         </div>
-        {% endfor %}
-    </ul>
+    </div>
+    {% endfor %}
+</ul>
 </div>
+
 
 {% endblock %}

@@ -12,14 +12,21 @@
 <div class="container mt-2">
     <ul>
         {% for memo in my_memos %}
-        <div class="alert alert-success" role="alert">
-            <p>タイトル：<a href="{% url 'memo:memo_page' %}?memo_id={{memo.id}}">{{ memo.title }}</a></p>
-            <p>自分のキャラクター：{{ memo.my_char }}</p>
-            <p>相手のキャラクター：{{ memo.opp_char }}</p>
-            <p>本文：{{ memo.body }}</p>
-            <p>投稿者：{{ memo.author }} </p>
+        <div class="card border-primary">
+            <div class = "card-header">
+                <h5>投稿者：{{ memo.author }} </h5>
+                <h6>自分のキャラクター：{{ memo.my_char }}
+                相手のキャラクター：{{ memo.opp_char }}</h6>
+            </div>
+            <div class = "card-body">
+                <h5>タイトル：<a href="{% url 'memo:memo_page' %}?memo_id={{memo.id}}">{{ memo.title }}</a></h5>
+                <p>本文：{{ memo.body }}</p>
+            </div>
+            <div class = "card-footer">
             <p>goods：{{ memo.good }}</p>
             <p>read：{{ memo.read }}</p>
+            <p>date time：{{ memo.date_time }}</p>
+            </div>
             <!--<p>id：{{memo.id}}</p>-->
         </div>
         {% endfor %}

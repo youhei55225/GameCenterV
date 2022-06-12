@@ -74,11 +74,11 @@ def mymemos(request):
     }
     return render(request,'memo/mymemos.html',prms)
 
-def evaluation_memo(request):
+def memo_detail(request):
     if request.method == 'GET':
         memo_id = int(request.GET['memo_id'])
-        eva_memo = Memos.objects.get(pk=memo_id)
+        the_memo = Memos.objects.get(pk=memo_id)
         prms = {
-            'eva_memo':eva_memo
+            'the_memo':the_memo
         }
-        return render(request,'memo/evaluation_memo.html',prms)
+        return render(request,'memo/memo_detail.html',prms)
