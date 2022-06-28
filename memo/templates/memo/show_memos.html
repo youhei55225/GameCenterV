@@ -20,11 +20,16 @@
         <div class="card my-3 test-center border-dark" >
             <div class = "card-header">
                 <h5>投稿者：{{ memo.author }} </h5>
-                <h6>自分のキャラクター：{{ memo.my_char }}
-                相手のキャラクター：{{ memo.opp_char }}</h6>
-            </div>
-        <div class="card-body">
-            <div class = "card-title">
+                    <div class='container-fluid'>
+                        <div class = 'row'>
+                            <div class = 'col'>自分のキャラクター：{{ memo.my_char }}</div>
+                            <div class = 'col'>相手のキャラクター：{{ memo.opp_char }}</div>
+                            <div class = 'col'>タグ：{{ memo.tag }}</div>
+                        </div>
+                    </div>
+                </div>
+            <div class="card-body">
+                <div class = "card-title">
                 <h5>
                     タイトル：<a href="{% url 'memo:memo_detail' %}?memo_id={{memo.id}}">{{ memo.title }}</a>
                 </h5>

@@ -12,11 +12,16 @@
 <div class="container mt-2">
     <ul>
         {% for memo in my_memos %}
-        <div class="card border-primary">
+        <div class="card mt-3 border-primary">
             <div class = "card-header">
                 <h5>投稿者：{{ memo.author }} </h5>
-                <h6>自分のキャラクター：{{ memo.my_char }}
-                相手のキャラクター：{{ memo.opp_char }}</h6>
+                <div class = 'container-fluid'>
+                    <div class = 'row'>
+                        <div class='col'>自分のキャラクター：{{ memo.my_char }}</div>
+                        <div class='col'>相手のキャラクター：{{ memo.opp_char }}</div>
+                        <div class='col'>タグ：{{ memo.tag }}</div>
+                    </div>
+                </div>
             </div>
             <div class = "card-body">
                 <h5>タイトル：<a href="{% url 'memo:memo_page' %}?memo_id={{memo.id}}">{{ memo.title }}</a></h5>

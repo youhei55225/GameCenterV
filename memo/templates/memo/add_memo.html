@@ -1,18 +1,28 @@
 {% extends 'login/base.html' %}
 
-{% block head %}
-<title>メモ追加</title>
+{% block title %}
+メモ追加
 {% endblock %}
 
 {% block content %}
-<h1>メモ追加フォーム</h1>
-<form method="POST"  novlidate>
-    {% csrf_token %} 
-    {{ form.as_p }}
-    <button type="submit">追加</button>
-</form>
-<!--
-username {{ user.username }}
--->
-
+<div class = "container">
+    <div class = "card border-info">
+        <div class ="text-center">
+            <div class = "card-header">
+                <h5>メモを追加</h5>
+            </div>
+            <div class = "card-body">
+                
+                <form method="POST"  novlidate>
+                    {% csrf_token %} 
+                    {{ form.as_p }}
+            </div>
+            <div class = "card-footer">
+                    <button type="submit" class = "btn-primary">追加</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
 {% endblock %}

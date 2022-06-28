@@ -12,11 +12,14 @@ def top(request):
     return render(request,'memo/top.html')
 
 def add_memo(request):
-    params = {'form':MemosForm()}
+    params = {
+        'form':MemosForm()
+        }
     form = MemosForm(request.POST)
     if form.is_valid():
         tag = form.save(commit=False)
         tag.author = request.user
+        tag.tag = request.POST['one']
         tag.save()
     return render(request,'memo/add_memo.html',params)
 
