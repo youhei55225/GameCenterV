@@ -1,0 +1,15 @@
+{% extends 'login/base.html' %}
+
+{% block title %}
+ユーザ登録
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'login:user_resister_success' %}" method='POST'>
+{% csrf_token %}
+{{ form.as_p }}
+<input type='submit' value='登録'>
+</form>
+
+{% endblock %}

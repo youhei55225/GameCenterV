@@ -11,4 +11,6 @@ urlpatterns = [
      path('test/',views.test, name='test'),
      path('logout/',views.Logout.as_view(), name='logout'),
      path('my_page/<int:pk>/', views.MyPage.as_view(), name='my_page'),
+     path('user_resister/',views.UserResister,name='user_resister'),
+     path('user_resister_success/',views.UserResisterSuccess,name='user_resister_success'),
 ]

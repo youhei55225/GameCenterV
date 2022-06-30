@@ -1,6 +1,7 @@
+from xml.dom.minidom import CharacterData
 from django.shortcuts import render
 from .models import Memo,Memos
-from .forms import MemoForm,MemosForm,UpdateMemoForm
+from .forms import MemoForm,MemosForm,UpdateMemoForm,CharctersSelectForm
 from django.views.generic import UpdateView
 
 # Create your views here.
@@ -20,13 +21,39 @@ def add_memo(request):
         tag = form.save(commit=False)
         tag.author = request.user
         tag.tag = request.POST['one']
+        tag.my_char = request.POST['ChoiceMyCharacter']
+        tag.opp_char = request.POST['ChoiceOppCharacter']
         tag.save()
     return render(request,'memo/add_memo.html',params)
 
 def show_memos(request):
     prms = {
-        'memos':Memos.objects.all()
+        'memos':Memos.objects.all(),
+        'characters' :CharctersSelectForm()
     }
+
+    if request.method == 'POST':
+
+        if request.POST['MyCharacter'] == '指定しない' and request.POST['OppCharacter'] == '指定しない':
+            prms = {
+                'memos':Memos.objects.all(),
+                'characters':CharctersSelectForm()
+            }
+        elif request.POST['MyCharacter'] != '指定しない' and request.POST['OppCharacter'] == '指定しない':
+            prms = {
+                'memos':Memos.objects.filter(my_char=request.POST['MyCharacter']),
+                'characters':CharctersSelectForm()
+            }
+        elif request.POST['MyCharacter'] == '指定しない' and request.POST['OppCharacter'] != '指定しない':
+            prms = {
+                'memos':Memos.objects.filter(opp_char=request.POST['OppCharacter']),
+                'characters':CharctersSelectForm()
+            }
+        else:
+            prms = {
+                'memos':Memos.objects.filter(my_char=request.POST['MyCharacter'],opp_char=request.POST['OppCharacter']),
+                'characters':CharctersSelectForm()
+            }
     return render(request,'memo/show_memos.html',prms)
 
 def memo_page(request):
@@ -73,8 +100,32 @@ def edit_memo(request):
 
 def mymemos(request):
     prms = {
-        'my_memos':Memos.objects.filter(author=request.user)
+        'my_memos':Memos.objects.filter(author=request.user),
+        'characters':CharctersSelectForm()
     }
+    if request.method == 'POST':
+
+        if request.POST['MyCharacter'] == '指定しない' and request.POST['OppCharacter'] == '指定しない':
+            prms = {
+                'my_memos':Memos.objects.filter(author=request.user),
+                'characters':CharctersSelectForm()
+            }
+        elif request.POST['MyCharacter'] != '指定しない' and request.POST['OppCharacter'] == '指定しない':
+            prms = {
+                'my_memos':Memos.objects.filter(author=request.user,my_char=request.POST['MyCharacter']),
+                'characters':CharctersSelectForm()
+            }
+        elif request.POST['MyCharacter'] == '指定しない' and request.POST['OppCharacter'] != '指定しない':
+            prms = {
+                'my_memos':Memos.objects.filter(author=request.user,opp_char=request.POST['OppCharacter']),
+                'characters':CharctersSelectForm()
+            }
+        else:
+            prms = {
+                'my_memos':Memos.objects.filter(author=request.user,my_char=request.POST['MyCharacter'],opp_char=request.POST['OppCharacter']),
+                'characters':CharctersSelectForm()
+            }
+
     return render(request,'memo/mymemos.html',prms)
 
 def memo_detail(request):

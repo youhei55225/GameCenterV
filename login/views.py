@@ -1,11 +1,16 @@
+from urllib import request
 from django.shortcuts import render
 
 from django.contrib.auth.views import LoginView, LogoutView
-from .forms import LoginForm, User
+from django.urls import reverse_lazy
+from .forms import LoginForm, User, UserResisterForm
 from django.views import generic
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model,login
 from django.contrib.auth.mixins import UserPassesTestMixin
+
+from django.views.generic import CreateView
+from django.http.response import HttpResponseRedirect
 
 # Create your views here.
 
@@ -41,3 +46,15 @@ class OnlyYouMixin(UserPassesTestMixin):
 class MyPage(OnlyYouMixin, generic.DetailView):
     model = User
     template_name = 'login/my_page.html'
+
+def UserResister(request):
+    prms = {
+        'form':UserResisterForm
+    }
+    return render(request,'login/user_resister.html',prms)
+    
+
+def UserResisterSuccess(request):
+    if request.method == 'POST':
+        User.objects.create_user(request.POST['username'],'',request.POST['password'])
+    return render(request,'login/user_resister_success.html')

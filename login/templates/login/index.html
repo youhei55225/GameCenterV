@@ -29,4 +29,16 @@ login
           </div>
         </div>
       </div>
+
+    <div class = 'container'>
+      <div class="col-md-6 offset-md-3">
+      <div class = 'card'>
+        <div class = 'card-header'>
+          <h5>ユーザ登録がまだの場合</h5>
+      </div>
+      <div class = 'card-body'>
+        <a href={% url 'login:user_resister' %}>ユーザ登録</a>
+      </div>
+      </div>
+      </div>
       {% endblock %}
