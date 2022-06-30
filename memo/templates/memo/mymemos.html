@@ -5,12 +5,20 @@
 {% endblock%}
 
 {% block content %}
+<div class = 'container'>
+    <ul>
+    <form method='POST'>
+        <div class = 'card mt-3 border-danger bg-light'>
+            <div class = 'card-body'>
+                {% csrf_token %}
+                {{characters.as_p}}
+                <button class = 'btn btn-danger' type="submit">キャラクターを指定</button>
+            </div>
+        </div>
+    </form>
+</ul>
+</div>
 
-<form method='POST'>
-    {% csrf_token %}
-    {{characters.as_p}}
-    <button type="submit">キャラクターを指定</button>
-</form>
 
 <div class="container mt-2">
     <ul>
